@@ -13,7 +13,7 @@ const Navbar = ({ user, tab, setTab }) => {
 
   return (
     <div className="nav-bar d-flex justify-content-between py-2 px-5">
-      <ProfilePopup showPopup={showPopup} />
+      {user && <ProfilePopup showPopup={showPopup} />}
       <div className="nav-left d-flex align-items-center gap-5">
         <div className="logo">
           <RiMovie2Line />

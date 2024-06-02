@@ -85,7 +85,7 @@
   flex: 1;
 }
 
-/*! ---------------- STYLING LEFT SEARCH AREA: Searching Movies ---------------- */
+/*! ---------------- STYLING LEFT: SEARCH AREA ---------------- */
 
 .search-left {
   /* border: 1px solid seagreen; */
@@ -158,6 +158,66 @@
   }
 }
 
+/*! -------------------- STYLING LEFT: ALL LISTS SECTION -------------------- */
+
+.all-lists,
+.about,
+.contact {
+  background-color: var(--secondary-color);
+  height: 85vh;
+  padding: 30px;
+  border-radius: 10px;
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+  }
+}
+
+.all-lists {
+  /* border: 1px solid blue; */
+  overflow-y: auto;
+
+  button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+  }
+}
+
+.all-lists::-webkit-scrollbar {
+  display: none;
+}
+
+/*! -------------------- STYLING LEFT: ABOUT SECTION -------------------- */
+
+.about {
+  /* border: 1px solid red; */
+  p {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: var(--primary-text-color);
+  }
+
+  p:nth-child(3) {
+    color: var(--highlight-color);
+  }
+}
+
+/*! -------------------- STYLING LEFT: CONTACT SECTION -------------------- */
+
+.contact {
+  /* border: 1px solid green; */
+  p {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: var(--primary-text-color);
+  }
+  strong {
+    text-decoration: underline;
+  }
+}
+
 /*! ---------------- STYLING RIGHT SEARCH AREA: Creating Lists ---------------- */
 
 .search-right {
@@ -177,36 +237,36 @@
     font-size: 1.1rem;
   }
 
-  .list-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-    margin-top: 10px;
-    cursor: pointer;
-
-    h5 {
-      font-size: 1rem;
-      margin-bottom: 0;
-    }
-    p {
-      font-size: 0.75rem;
-      margin-bottom: 0;
-    }
-
-    button {
-      margin-top: 0;
-      max-width: 50px;
-      padding: 5px 5px;
-      font-size: 0.75rem;
-      background-color: var(--secondary-text-color);
-    }
-  }
-
   .selected-list {
     border: 1px solid var(--highlight-color);
     color: var(--highlight-color);
+  }
+}
+
+.list-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  margin-top: 10px;
+  cursor: pointer;
+
+  h5 {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  button {
+    margin-top: 0;
+    max-width: 50px;
+    padding: 5px 5px;
+    font-size: 0.75rem;
+    background-color: var(--secondary-text-color);
   }
 }

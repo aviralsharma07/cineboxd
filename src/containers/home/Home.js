@@ -12,21 +12,25 @@ import "./Home.css";
 
 const Home = () => {
   const [user, setUser] = useState(null); // State to store the current user
-  const { firebaseAuth, getUserLists, getMoviesFromList } = useContext(FirebaseContext);
+  const { firebaseAuth, getUserLists, getPublicLists } = useContext(FirebaseContext);
   const [searchTitle, setSearchTitle] = useState(""); // State to store the search title
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedListId, setSelectedListId] = useState(null);
   const [userLists, setUserLists] = useState([]); // State to store user's lists
   const [showListDetails, setShowListDetails] = useState(false);
+  const [showPublicLists, setShowPublicLists] = useState(false);
   const [openList, setOpenList] = useState(null);
+  const [openPublicList, setOpenPublicList] = useState(null);
   const [tab, setTab] = useState("Home");
+  const [publicLists, setPublicLists] = useState([]);
   const userId = user?.uid;
   // console.log("userId: ", userId);
   // console.log("seachTItle: ", searchTitle);
   // console.log("selectedListId: ", selectedListId);
   // console.log("userLists: ", userLists);
-  console.log("tab: ", tab);
+  // console.log("tab: ", tab);
+  // console.log("publicLists: ", publicLists);
 
   useEffect(() => {
     // Listen for auth state changes
@@ -65,9 +69,23 @@ const Home = () => {
     fetchData();
   }, [searchTitle]);
 
+  useEffect(() => {
+    const fetchPublicLists = async () => {
+      const lists = await getPublicLists();
+      setPublicLists(lists);
+    };
+
+    fetchPublicLists();
+  }, [getPublicLists]);
+
   const handleOpenList = (list) => {
     setOpenList(list);
     setShowListDetails(true);
+  };
+
+  const handleOpenPublicList = (list) => {
+    setOpenPublicList(list);
+    setShowPublicLists(true);
   };
 
   return (
@@ -75,7 +93,8 @@ const Home = () => {
       <Navbar user={user} tab={tab} setTab={setTab} />
       {user ? (
         <>
-          {showListDetails && <ListDetails showListDetails={showListDetails} onClose={() => setShowListDetails(false)} userId={userId} openList={openList} />}
+          {showPublicLists && <ListDetails showListDetails={showPublicLists} onClose={() => setShowPublicLists(false)} userId={openPublicList?.userId} listName={openPublicList?.listName} listId={openPublicList?.listId} />}
+          {showListDetails && <ListDetails showListDetails={showListDetails} onClose={() => setShowListDetails(false)} userId={userId} listName={openList.listName} listId={openList.id} />}
           {showPopup && <CreateList showPopup={showPopup} onClose={() => setShowPopup(false)} userId={userId} />}
           <div className="search-area row mx-5 my-3">
             {tab === "Home" && (
@@ -99,16 +118,35 @@ const Home = () => {
             {tab === "Lists" && (
               <div className="all-lists col-8">
                 <h1>All Lists</h1>
+                {publicLists.map((list) => (
+                  <div key={list.listId} className="list-card">
+                    <h5>{list.listName}</h5>
+                    <p>By: {list.username}</p>
+                    <button onClick={() => handleOpenPublicList(list)}>Open</button>
+                  </div>
+                ))}
               </div>
             )}
             {tab === "About" && (
               <div className="about col-8">
-                <h1>About</h1>
+                <h1>About Cineboxd</h1>
+                <p>Cineboxd is a platform where you can create and share your own movie lists. You can search for movies, create public or private lists, and see what others have listed.</p>
+                <p>Our mission is to provide movie enthusiasts with a convenient and enjoyable way to organize and share their favorite films. Join our community and start building your own movie library today!</p>
               </div>
             )}
             {tab === "Contact" && (
               <div className="contact col-8">
-                <h1>Contact</h1>
+                <h1>Contact Us</h1>
+                <p>If you have any questions or feedback, feel free to reach out to us. We'd love to hear from you!</p>
+                <p>
+                  <strong>Email:</strong> support@cineboxd.com
+                </p>
+                <p>
+                  <strong>Phone:</strong> +123 456 7890
+                </p>
+                <p>
+                  <strong>Address:</strong> 123 Movie Lane, Filmtown, Cinema City
+                </p>
               </div>
             )}
             <div className="search-right col-4">

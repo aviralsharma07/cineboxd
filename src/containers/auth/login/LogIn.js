@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FirebaseContext } from "../../../context/Firebase";
 import "./LogIn.css";
 import { RiMovie2Line } from "react-icons/ri";
+import { ToastContainer, toast } from "react-toastify";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -13,9 +14,14 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await signIn(email, password);
-    if (user) {
-      navigate("/");
+    try {
+      const user = await signIn(email, password);
+      if (user) {
+        toast.success("Login successful!");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Login failed! Please check your credentials.");
     }
   };
 
@@ -45,6 +51,7 @@ const LogIn = () => {
           <a href="/signup">Sign Up</a>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

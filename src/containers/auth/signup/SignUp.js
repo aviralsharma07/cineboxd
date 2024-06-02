@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { FirebaseContext } from "../../../context/Firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { RiMovie2Line } from "react-icons/ri";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -11,11 +12,24 @@ const SignUp = () => {
   const { signUp } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const user = await signUp(email, password, username);
+  //   if (user) {
+  //     navigate("/");
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await signUp(email, password, username);
-    if (user) {
-      navigate("/");
+    try {
+      const user = await signUp(email, password, username);
+      if (user) {
+        toast.success("Sign up successful!");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Sign up failed! Please check your credentials.");
     }
   };
 
@@ -49,6 +63,7 @@ const SignUp = () => {
           <a href="/login">Log In</a>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

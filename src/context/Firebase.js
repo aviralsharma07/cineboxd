@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, collection, addDoc, doc, getDocs, onSnapshot, setDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, getDocs, onSnapshot, setDoc, query, where } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC5MzWYW4nIf3nDjhFsdq-C19A1O-dYYR0",
@@ -130,6 +130,69 @@ export const FirebaseProvider = (props) => {
     return unsubscribe;
   };
 
+  // const getPublicLists = async () => {
+  //   try {
+  //     const usersRef = collection(firestore, "users");
+  //     const querySnapshot = await getDocs(usersRef);
+  //     const publicLists = [];
+
+  //     querySnapshot.forEach((userDoc) => {
+  //       const listsRef = collection(userDoc.ref, "lists");
+  //       listsRef
+  //         .where("visibility", "==", "public")
+  //         .get()
+  //         .then((querySnapshot) => {
+  //           querySnapshot.forEach((listDoc) => {
+  //             publicLists.push({
+  //               userId: userDoc.id,
+  //               listId: listDoc.id,
+  //               ...listDoc.data(),
+  //             });
+  //           });
+  //         });
+  //     });
+
+  //     return publicLists;
+  //   } catch (error) {
+  //     console.error("Error fetching public lists: ", error);
+  //     return [];
+  //   }
+  // };
+
+  const getPublicLists = async () => {
+    try {
+      const usersRef = collection(firestore, "users");
+      const querySnapshot = await getDocs(usersRef);
+
+      const publicLists = [];
+      querySnapshot.forEach((userDoc) => {
+        console.log("userDoc: ", userDoc.id);
+        const listsRef = collection(userDoc.ref, "lists");
+        const publicListsRef = query(listsRef, where("visibility", "==", "public"));
+
+        // Fetch all public lists for this user in a single call
+        getDocs(publicListsRef).then((querySnapshot) => {
+          querySnapshot.forEach((listDoc) => {
+            publicLists.push({
+              userId: userDoc.id,
+              listId: listDoc.id,
+              username: userDoc.data().username,
+              ...listDoc.data(),
+            });
+          });
+        });
+      });
+
+      // Wait for all promises to resolve before returning
+      await Promise.allSettled(publicLists.map((list) => list.then((list) => list)));
+
+      return publicLists;
+    } catch (error) {
+      console.error("Error fetching public lists: ", error);
+      return [];
+    }
+  };
+
   const contextValue = {
     signUp,
     signIn,
@@ -139,6 +202,7 @@ export const FirebaseProvider = (props) => {
     getUserLists,
     addMovieToList,
     getMoviesFromList,
+    getPublicLists,
   };
   return <FirebaseContext.Provider value={contextValue}>{props.children}</FirebaseContext.Provider>;
 };

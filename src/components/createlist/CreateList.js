@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import "./CreateList.css";
 import { FirebaseContext } from "../../context/Firebase";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateList = ({ showPopup, onClose, userId }) => {
   const { createList } = useContext(FirebaseContext);
@@ -9,8 +10,13 @@ const CreateList = ({ showPopup, onClose, userId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createList(userId, listName, visibility);
-    onClose();
+    try {
+      await createList(userId, listName, visibility);
+      onClose();
+      toast.success("List created successfully!");
+    } catch (error) {
+      toast.error("Failed to create list!");
+    }
   };
 
   return (
@@ -41,6 +47,7 @@ const CreateList = ({ showPopup, onClose, userId }) => {
           <button type="submit">Create List</button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
