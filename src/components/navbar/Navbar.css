@@ -1,0 +1,65 @@
+.nav-bar {
+  /* border: 1px solid red; */
+  color: var(--primary-text-color);
+  position: relative;
+}
+
+.logo {
+  font-size: 2rem;
+  color: var(--highlight-color);
+}
+
+.nav-bar button {
+  border: 1px solid var(--highlight-color);
+  color: var(--highlight-color);
+  /* border: none; */
+  /* color: #fff; */
+  /* background-color: var(--secondary-text-color); */
+  background-color: transparent;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+.nav-bar button:hover {
+  background-color: var(--highlight-color);
+  color: var(--secondary-text-color);
+}
+
+.nav-links a {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.active-tab {
+  background-color: var(--secondary-text-color);
+  color: var(--highlight-color);
+}
+
+.nav-links a:hover {
+  background-color: var(--secondary-text-color);
+  color: var(--highlight-color);
+  cursor: pointer;
+}
+
+.profile {
+  padding: 0px 5px;
+  background-color: var(--secondary-text-color);
+  border-radius: 7px;
+  font-size: 1.75rem;
+  /* color: var(--highlight-color); */
+  cursor: pointer;
+}
+
+.nav-left {
+  /* border: 1px solid green; */
+}
+
+.nav-right {
+  /* border: 1px solid blue; */
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-text-color);
+}

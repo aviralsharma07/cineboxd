@@ -1,0 +1,212 @@
+.home {
+  background-color: var(--primary-color);
+  /* border: 1px solid blueviolet; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  height: 100%;
+  /* border: 1px solid red; */
+  background-image: url("../../assets/sunrise.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.main-content::before {
+  content: ""; /* Required for pseudo-element */
+  position: absolute; /* Position the pseudo-element */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color); /* Set the color of the overlay */
+  opacity: 0.69; /* Adjust the opacity of the overlay */
+  z-index: 1; /* Ensure the overlay is behind the content */
+}
+
+.main-left {
+  z-index: 2;
+  /* border: 2px solid blue; */
+
+  h1 {
+    font-weight: 700;
+    width: 16ch;
+  }
+
+  p {
+    color: var(--primary-text-color);
+    width: 41ch;
+  }
+
+  button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #00ac1c;
+    color: var(--primary-text-color);
+    font-weight: 600;
+    margin-top: 0;
+  }
+}
+
+.main-right {
+  color: var(--primary-text-color);
+  z-index: 2;
+  /* border: 2px solid #00ac1c; */
+
+  .main-right_content {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.25);
+    font-size: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .right-text {
+    font-size: 1rem;
+    width: 16ch;
+    text-wrap: wrap;
+  }
+}
+
+/* ---------------- STYLING SEARCH AREA ---------------- */
+
+.search-area {
+  color: var(--primary-text-color);
+  /* border: 1px solid wheat; */
+  flex: 1;
+}
+
+/*! ---------------- STYLING LEFT SEARCH AREA: Searching Movies ---------------- */
+
+.search-left {
+  /* border: 1px solid seagreen; */
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+  /* border: 1px solid salmon; */
+
+  input {
+    width: 80%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+.search-cards {
+  background-color: var(--primary-text-color);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 10px;
+  column-gap: 5px;
+  /* border: 1px solid slateblue; */
+  overflow-y: auto;
+  width: 100%;
+  height: 90%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.search-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.search-placeholder {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  color: var(--primary-text-color);
+  margin-top: 20px;
+  text-align: center;
+  text-transform: capitalize;
+
+  h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-weight: 500;
+  }
+}
+
+/*! ---------------- STYLING RIGHT SEARCH AREA: Creating Lists ---------------- */
+
+.search-right {
+  /* border: 1px solid salmon; */
+  height: 85vh;
+}
+
+.list-container {
+  background-color: var(--secondary-color);
+  margin: 20px 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 20px;
+
+  button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+  }
+
+  .list-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    margin-top: 10px;
+    cursor: pointer;
+
+    h5 {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    p {
+      font-size: 0.75rem;
+      margin-bottom: 0;
+    }
+
+    button {
+      margin-top: 0;
+      max-width: 50px;
+      padding: 5px 5px;
+      font-size: 0.75rem;
+      background-color: var(--secondary-text-color);
+    }
+  }
+
+  .selected-list {
+    border: 1px solid var(--highlight-color);
+    color: var(--highlight-color);
+  }
+}
