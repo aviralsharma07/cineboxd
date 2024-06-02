@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Cineboxd
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Cineboxd is a web application where users can search for their favorite movies, create personal movie lists (both private and public), and explore public lists created by other users. This project is built using React, Firebase, and various other modern web development tools.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Firebase Configuration](#firebase-configuration)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- User Authentication (Sign Up, Log In, Log Out)
+- Search for movies using OMDB API
+- Create and manage personal movie lists
+- View public movie lists created by other users
+- Responsive design
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
+![Home Screen](path_to_home_screenshot.png)
+![Login Screen](path_to_login_screenshot.png)
+![Movie List Screen](path_to_movie_list_screenshot.png)
+![Create List Screen](path_to_movie_details_screenshot.png)
+![Public Lists Screen](path_to_public_lists_screenshot.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To run this project locally, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/yourusername/cineboxd.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install the dependencies:
 
-### `npm run eject`
+   ```bash
+    cd cineboxd
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Generate a free API key from [OMDb API](http://www.omdbapi.com/apikey.aspx) and create a new Firebase project.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. You can create a `.env` file in the root directory of the project and add the firebase configuration and OMDb API key or you can add them directly in the `Firebase.js` and `App.js` files.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+6. Start the development server:
+   ```bash
+   npm start
+   ```
+7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+1. Sign up for a new account or log in with an existing account.
+2. Search for movies using the search bar.
+3. Click on a movie to view more details.
+4. Add the movie to your personal list by clicking the "Add to List" button.
+5. Create a new list by clicking the "Create List" button.
+6. View your personal lists by on the "My Lists" tab.
+7. View public lists created by other users on the "Lists" tab on the navigation bar.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Firebase Configuration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To use Firebase in this project, you need to create a new Firebase project and add the configuration to the `Firebase.js` file. You can also add the configuration directly in the `App.js` file.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/).
+2. Add a web app to your Firebase project.
+3. Copy the Firebase configuration object.
+4. Add the configuration object to the `Firebase.js` file or the `App.js` file.
