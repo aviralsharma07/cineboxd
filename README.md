@@ -20,11 +20,10 @@ Cineboxd is a web application where users can search for their favorite movies, 
 
 ## Screenshots
 
-![Home Screen](path_to_home_screenshot.png)
-![Login Screen](path_to_login_screenshot.png)
-![Movie List Screen](path_to_movie_list_screenshot.png)
-![Create List Screen](path_to_movie_details_screenshot.png)
-![Public Lists Screen](path_to_public_lists_screenshot.png)
+![Home Screen](src/assets/homepage.png)
+![Login Screen](src/assets/loginpage.png)
+![Movie List Screen](src/assets/movielistspage.png)
+![Create List Screen](src/assets/createlistpage.png)
 
 ## Installation
 
