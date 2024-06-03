@@ -8,6 +8,7 @@ import { MdOutlineSocialDistance } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { FirebaseContext } from "../../context/Firebase";
 import { Link } from "react-router-dom";
+import { IoCloseSharp } from "react-icons/io5";
 import "./Home.css";
 
 const Home = () => {
@@ -24,6 +25,7 @@ const Home = () => {
   const [openPublicList, setOpenPublicList] = useState(null);
   const [tab, setTab] = useState("Home");
   const [publicLists, setPublicLists] = useState([]);
+  const [showUserLists, setShowUserLists] = useState(false);
   const userId = user?.uid;
   // console.log("userId: ", userId);
   // console.log("seachTItle: ", searchTitle);
@@ -31,6 +33,7 @@ const Home = () => {
   // console.log("userLists: ", userLists);
   // console.log("tab: ", tab);
   // console.log("publicLists: ", publicLists);
+  console.log(showUserLists);
 
   useEffect(() => {
     // Listen for auth state changes
@@ -90,7 +93,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Navbar user={user} tab={tab} setTab={setTab} />
+      <Navbar user={user} tab={tab} setTab={setTab} showUserLists={showUserLists} setShowUserLists={setShowUserLists} />
       {user ? (
         <>
           {showPublicLists && <ListDetails showListDetails={showPublicLists} onClose={() => setShowPublicLists(false)} userId={openPublicList?.userId} listName={openPublicList?.listName} listId={openPublicList?.listId} />}
@@ -149,18 +152,23 @@ const Home = () => {
                 </p>
               </div>
             )}
-            <div className="search-right col-4">
-              <div className="list-container">
-                <h3>My Lists</h3>
-                <button onClick={() => setShowPopup(true)}>Create a New List</button>
-                <div className="list-cards">
-                  {userLists.map((list) => (
-                    <div key={list.id} className={`list-card ${selectedListId === list.id ? "selected-list" : ""}`} onClick={() => setSelectedListId(list.id)}>
-                      <h5>{list.listName}</h5>
-                      <p>{list.movieCount} Movies</p>
-                      <button onClick={() => handleOpenList(list)}>Open</button>
-                    </div>
-                  ))}
+            <div className={`search-right-container col-4 ${showUserLists ? "show-user-lists" : ""}`}>
+              <div className="close-user-lists-btn" onClick={() => setShowUserLists(false)}>
+                <IoCloseSharp />
+              </div>
+              <div className="search-right">
+                <div className="list-container">
+                  <h3>My Lists</h3>
+                  <button onClick={() => setShowPopup(true)}>Create a New List</button>
+                  <div className="list-cards">
+                    {userLists.map((list) => (
+                      <div key={list.id} className={`list-card ${selectedListId === list.id ? "selected-list" : ""}`} onClick={() => setSelectedListId(list.id)}>
+                        <h5>{list.listName}</h5>
+                        <p>{list.movieCount} Movies</p>
+                        <button onClick={() => handleOpenList(list)}>Open</button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

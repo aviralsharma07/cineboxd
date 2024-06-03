@@ -45,3 +45,23 @@ button {
 button:hover {
   background-color: #d86a56;
 }
+
+/* ----------------- MEDIA QUERIES ----------------- */
+
+@media (max-width: 576px) {
+  .movie-card {
+    width: 110px;
+  }
+
+  .movie-title {
+    font-size: 0.65rem;
+  }
+
+  .movie-year {
+    font-size: 0.55rem;
+  }
+
+  button {
+    font-size: 0.65rem;
+  }
+}

@@ -46,7 +46,7 @@
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
-    background-color: #00ac1c;
+    /* background-color: #00ac1c; */
     color: var(--primary-text-color);
     font-weight: 600;
     margin-top: 0;
@@ -225,6 +225,10 @@
   height: 85vh;
 }
 
+.close-user-lists-btn {
+  display: none;
+}
+
 .list-container {
   background-color: var(--secondary-color);
   margin: 20px 5px;
@@ -268,5 +272,118 @@
     padding: 5px 5px;
     font-size: 0.75rem;
     background-color: var(--secondary-text-color);
+  }
+}
+
+/*! --------------- MEDIA QUERIES --------------- */
+
+@media (min-width: 768px) and (max-width: 911px) {
+  .main-left {
+    padding-left: 100px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-left {
+    margin-top: 50px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+
+    h1 {
+      margin: auto;
+    }
+  }
+
+  .main-right {
+    margin-top: 50px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+
+    .main-right_content {
+      width: 100%;
+      text-align: left;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .search-area {
+    /* border: 1px solid seagreen; */
+    margin: 0 !important;
+  }
+
+  .search-right-container {
+    background-color: var(--primary-color);
+    /* border: 1px solid seagreen; */
+    position: absolute;
+    display: none;
+  }
+
+  .show-user-lists {
+    display: block;
+  }
+
+  .close-user-lists-btn {
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    background-color: var(--highlight-color);
+    padding: 2px 3px;
+    border-radius: 5px;
+  }
+  .search-right {
+    width: 100%;
+  }
+
+  .search-right-container {
+    width: 100%;
+  }
+  .search-left {
+    width: 100%;
+    /* border: 1px solid wheat; */
+  }
+
+  .all-lists {
+    /* border: 1px solid red !important; */
+    margin: auto;
+    margin-bottom: 20px;
+    width: 90% !important;
+  }
+
+  .about {
+    margin: auto;
+    width: 90%;
+    margin-bottom: 20px;
+
+    p {
+      font-size: 1.25rem;
+    }
+  }
+
+  .contact {
+    margin: auto;
+    margin-bottom: 20px;
+    width: 90%;
+    p {
+      font-size: 1.25rem;
+    }
+  }
+
+  .search-placeholder {
+    h3 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 0.75rem;
+    }
   }
 }

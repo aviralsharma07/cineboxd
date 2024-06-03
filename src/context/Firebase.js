@@ -166,7 +166,7 @@ export const FirebaseProvider = (props) => {
 
       const publicLists = [];
       querySnapshot.forEach((userDoc) => {
-        console.log("userDoc: ", userDoc.id);
+        // console.log("userDoc: ", userDoc.id);
         const listsRef = collection(userDoc.ref, "lists");
         const publicListsRef = query(listsRef, where("visibility", "==", "public"));
 
